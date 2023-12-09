@@ -1,5 +1,6 @@
 // package files
 const express = require('express');
+const path = require("path");
 
 // configurations files
 const appConfig = require('./product/configurations/app-config');
@@ -14,7 +15,10 @@ const app = express();
 
 // set view engine
 app.set('view engine', 'pug');
-app.set('views', './product/views');
+app.set('views', path.join(__dirname, '/product/views'));
+
+// set public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use(publicRoutes);
